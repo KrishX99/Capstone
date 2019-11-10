@@ -1,0 +1,457 @@
+
+<style>
+body{
+  overflow-x: hidden;
+  background: #bdc3c7;
+}
+.sidenav {
+  position: fixed;
+  width: 200px;
+  top: 0;
+}
+.marginleft{
+    transition: margin 0.5s ease;
+  margin-left: 0px;
+  margin-top: 0px;
+
+}
+.marginadd{
+  transition: margin 0.5s ease;
+  margin-left:200px;
+  margin-top: 0px;
+
+}
+.rowlink{
+  width:100%;
+  text-decoration:none;
+  color:white;
+  padding:10px;
+  display: block;
+  border-bottom:.5px solid lightgrey;
+}
+.rowsublink{
+  width:80%;
+  text-decoration:none;
+  color:white;
+  padding:10px;
+  display: block;
+  margin-left: 5px;
+  border-bottom:.5px solid lightgrey;
+}
+@media only screen and (min-width: 990px) {
+  .marginleft{
+        margin-left: 250px;
+  }
+  .sidenav{
+    display:block!important;
+    width:250px;
+  }
+
+
+}
+.bg-schme{
+background-color: #400047;
+}
+.btn-btn-background{
+    -moz-user-select:none;
+    background-image: -webkit-linear-gradient(145deg ,#faa61f 0% , #faa61f 0% , #ed1847 100%);
+    border:1px solid #bfa67a;
+    border-radius: 0.5rem;
+    color:#ffffff;
+    cursor:pointer;
+    display: inline-block;
+    font-size:12px;
+    line-height: 1.42857;
+    margin-bottom:0;
+    padding:12px 0px;
+    text-align:center;
+    text-transform:uppercase;
+    transition:all 0.5s ease 0s;
+    vertical-align: middle;
+    padding:15px;
+    
+  
+  }
+  .btn-btn-background:hover{
+    text-decoration: none;
+    color:#272627;
+    background:white;
+  }
+.custom-bg{
+  background: #2c3e50;
+}
+</style>
+<script>
+$( document ).ready(function() {
+  $(".sideshow").click(function(){
+    $(".marginleft").toggleClass('marginadd');
+    $(".sidenav ,.secondmenu").toggle(500);
+  })
+  
+});
+</script>
+<div class=" h-100 collapse  p-0 text-white  custom-bg sidenav"  id="sideNav">
+  <div class="text-center card card-body mt-3 mx-auto  bg-light" style="width: 150px;">
+    <img src="svg/logo.svg" alt="Brand" width="80">
+    <img src="svg/name.svg" alt="Brand" width="100">
+  </div>
+  <a href="http://localhost:{{port}}/dashboard" class=" rowlink custom-bg mt-4 " ><i class="fa fa-dashcube fa-md mx-2 "></i>DashBoard</a>
+  <div class="accordion " id="accordionExample">
+    <div class="bg-transparent">
+      <div class=" collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <a class=" rowlink bg-schme custom-bg " ><i class="fa mx-2 fa-lg fa-stethoscope"></i>Services<i class="fa float-right fa-caret-down"></i></a>
+      </div>
+
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="">
+          <a onclick="service()" class="rowsublink btn-btn-background mx-2"><i class="fa fa-book"></i> Service List</a>
+          <a onclick="activeService()" class="rowsublink bg-schme mx-2 btn-btn-background"><i class="fa fa-book"></i> Active Service</a>
+          <a onclick="historyService()" class="rowsublink bg-schme mx-2 btn-btn-background"><i class="fa fa-book"></i> Service History</a>
+        </div>
+      </div>
+    </div>
+    <div class="">
+
+      <div class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <a class=" rowlink custom-bg  " ><i class="fa mx-2 fa-lg fa-stethoscope"></i>Navigation<i class="fa float-right fa-caret-down"></i></a>
+      </div>
+
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="">
+          <a href="#"class="rowsublink bg-schme mx-2"><i class="fa fa-book"></i> work details</a>
+          <a href="#"class="rowsublink bg-schme mx-2"><i class="fa fa-book"></i> work details</a>
+          <a href="#"class="rowsublink bg-schme mx-2"><i class="fa fa-book"></i> work details</a>
+        </div>
+      </div>
+    </div>
+    <div class="">
+
+      <div class="  collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      <a class=" rowlink custom-bg  " ><i class="fa mx-2 fa-lg fa-stethoscope"></i> Navigation<i class="fa float-right fa-caret-down"></i></a>
+      </div>
+
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="">
+          <div class="">
+          <a href="#"class="rowsublink bg-schme mx-2"><i class="fa fa-book"></i>  details</a>
+          <a href="#"class="rowsublink bg-schme mx-2"><i class="fa fa-book"></i>  details</a>
+          <a href="#"class="rowsublink bg-schme mx-2"><i class="fa fa-book"></i>  details</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class=" marginleft">
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark custom-bg">
+  <button class="navbar-toggler p-0 sideshow" style="margin-left: 0!important;" type="button" data-toggle="collapse" data-target="#sideNav"
+    aria-controls="sideNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class=" navbar-brand  mr-auto ml-1 " href="#" >Dashboard</a>
+    
+  <!-- Collapsible content -->
+  <div class="" id="basicExampleNav">
+    <!-- Links -->
+    <ul class="navbar-nav mr-5  ">
+      <!-- Dropdown -->
+      <li class="nav-item dropdown mr-4">
+        <a class="nav-link " id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+            <img  id ="profile-icon"class="rounded-circle z-depth-0" 
+              height="35" width="35">        
+        </a>
+        <div class="dropdown-menu dropdown-left dropdown-info" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" id="profile" onclick="profile()">Profile</a>
+          <a class="dropdown-item" id="logout"onclick="logout()" >LogOut</a>
+          <a class="dropdown-item" id="update" onclick="updateProfile()">Update</a>
+          <a class="dropdown-item" id="update">Help</a>
+        </div>
+      </li>
+    </ul>
+    <!-- Links -->
+  </div>
+</nav>
+<!--/.Navbar-->
+<div class=" mt-3">
+  <div class="root container" id="root">
+  </div>
+</div>
+</div>
+
+<script>
+
+function profilerender(userData) {
+
+
+const { userDetails } = userData;
+let icon = "https://image.flaticon.com/icons/png/512/21/21104.png";
+// template for profile page
+if (!userDetails.profileImg) {
+  icon = userDetails.profileImg
+}
+userDetails.profileImg = icon;
+$("#profile-icon").attr('src', icon)
+
+var templateProfile = `<div class=" py-3">
+                      <div class="container ">
+                      <div class="row ">
+                      <div class="col-md-4 offset-md-2">
+                      <img src="${userDetails.profileImg}" class="rounded-circle z-depth-0" height="250" width="250"/>
+                      </div>
+                      <div class="col-md-4  custom-bg text-white">
+                        <div class="my-5">
+                        <h4> <i class="fa fa-user mx-2"></i>${ userData.name}</h4>
+                        <h4><i class="fa fa-envelope mx-2"></i>${ userData.email}</h4>
+                        <h4><i class="fa fa-phone mx-2"></i>${userDetails.contactNumber}</h4>
+                        <h4><i class="fa fa-Home mx-2"></i>${userDetails.contactAddress}</h4>
+                        </div>
+                      </div>
+                      </div>
+                      </div>`
+$("#root").html(templateProfile)
+return 
+
+}
+
+
+function profile(){
+
+
+$.ajax({
+  url: "http://localhost:3000/api/users/profile",
+  type: 'GET',
+  // Fetch the stored userToken from localStorage and set in the header
+  headers: { "Authorization": window.localStorage.getItem('userToken') },
+  success: function (data) {
+    window.localStorage.setItem('profileData',JSON.stringify(data.user))
+    profilerender(data.user)
+  },
+  error:function(response){
+    alert("something went wrong")
+  }
+
+});
+
+                  
+
+
+
+}
+function updateProfile(){
+const userData = JSON.parse(window.localStorage.getItem('profileData'))
+const { userDetails }= userData
+const templateupdateProfile =`<div class="container" id="updateprofilearea">
+<div id="alert-box">
+</div>
+  <div class="row my-2">
+      
+      <!-- edit form column -->
+      <div class="col-lg-12 my-3">
+          <h2>Edit Profile</h2>
+      </div>
+      <div class="col-lg-4 pull-lg-8 custom-bg text-center  text-white">
+              <img src="${userDetails.profileImg}" class="rounded-circle  m-2 z-depth-0" height="250" width="250" />
+              <h6 class="">edit</h6>
+              <label class="custom-file">
+                <input type="file" id="file" class="mx-auto" >
+                
+              </label>
+      </div>
+      <div class="col-lg-8 push-lg-4 personal-info">
+
+            <form role="form" >
+              <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Name</label>
+                  <div class="col-lg-9">
+                      <input class="form-control" type="text" value=${userData.name} id='name' />
+                  </div>
+              </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Contact</label>
+                  <div class="col-lg-9">
+                      <input class="form-control" type="number" value=${userDetails.contactNumber} id='contact' />
+                  </div>
+              </div>
+            
+              <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Address</label>
+                  <div class="col-lg-9">
+                      <input class="form-control" type="text" value="" placeholder="Street" id ='street' />
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label"></label>
+                  <div class="col-lg-3">
+                      <input class="form-control" type="text" value="" placeholder="City" id="city"/>
+                  </div>
+                  <div class="col-lg-3">
+                      <input class="form-control" type="text" value="" placeholder="State" id="state" />
+                  </div>
+                  <div class="col-lg-3">
+                      <input class="form-control" type="number" value="" placeholder="Pincode" id="pincode" />
+                  </div>
+              </div>
+              
+              
+              
+              <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label"></label>
+                  <div class="col-lg-9">
+                      <input type="reset" class="btn btn-secondary" value="Cancel" />
+                      
+                  </div>
+              </div>
+          </form>
+          <button id="updateForm"  class="btn btn-primary">Save Changes</button>
+      </div>
+      
+  </div>
+</div>
+<hr />`
+$("#root").html(templateupdateProfile)
+return 
+}
+function service(){
+$("#root").html("")
+  $("#root").append("<h3> Service List</h3>")
+  
+
+
+
+$.ajax({
+  url: "http://localhost:3000/api/services",
+  type: 'GET',
+  // Fetch the stored userToken from localStorage and set in the header
+  headers: { "Authorization": window.localStorage.getItem('userToken') },
+  success: function (data) {
+    
+    $("#root").append(`<div class="container"><div class="row">`)
+    data.map(item=>{
+      $("#root").append(`<div class="col-lg-3 col-sm-4"><div class="card">
+        <div class="card-body">
+        <img class="card-img-top" src=${item.photo_url} alt="Card image cap" height="150" width="200">
+        <h4 class="card-title">${item.name}</h4>
+        
+        <p class="card-text"> Description: ${item.description}</p>
+        <p class="card-text"> Area : ${item.area}</p>
+          <a onclick="serviceAdopted()" class="btn btn-primary" >Add thhs service</a>
+        </div>
+
+
+      
+      
+      
+      
+      </div></div>`)
+    })
+    $("#root").append(`</div ></div>`)
+  },
+  error: function (response) {
+    alert("something went wrong")
+  }
+
+});
+
+
+}
+function serviceAdopted(id){
+
+}
+function logout(){
+window.localStorage.clear()
+window.location.href = `http://localhost:{{post}}/login`;
+}
+
+
+
+
+$(document).ready(function(){
+if(!window.localStorage.user && !window.localStorage.token){
+  alert("please login")
+  window.location.href = `http://localhost:{{port}}/login`;
+}
+else {
+
+  profile()
+
+}
+
+
+
+})
+$(document).on('click', '#updateForm', function () {
+
+  const name = $('#name').val();
+  const contact = $("#contact").val()
+  const street = $('#street').val()
+  const city = $('#city').val()
+  const state = $('#state').val()
+  const pincode = $('#pincode').val()
+  let address = [street, city, state, pincode].join(" ")
+  
+  //Do validation here
+  const file = $('#file')[0].files[0]
+  const userData = JSON.parse(window.localStorage.getItem('profileData'))
+  const { userDetails } = userData
+  if (address === "") {
+    address = userDetails.contactAddress
+    console.log("i am here")
+  }
+  userData.name = name
+  userData.userDetails.contactNumber = contact
+  userData.userDetails.contactAddress = address
+  const data ={
+    name,
+    id:userData['_id'],
+    userDetails:{
+      ...userDetails
+    },
+  }
+  let formData = new FormData();
+  formData.append('file', file)
+  formData.append('user', JSON.stringify(data))
+    $.ajax({
+    type: 'POST',
+    contentType: false,
+    enctype: 'multipart/form-data',
+    processData: false,
+    headers: { "Authorization": window.localStorage.getItem('userToken') },
+    data: formData,
+    mode: 'no-cors',
+    dataType: 'json',
+    url: 'http://localhost:3000/api/users/upload',
+    beforeSend:function(){
+      const dialog = `<div class="alert alert-info alert-dismissable " id="alert-pop-up"> 
+              updating...
+          </div>`
+      $("#alert-box").html(dialog)     
+
+    },
+    success: function (e) {
+      setTimeout(function(){
+        $("#alert-pop-up").html("user Updated ")
+      
+      },1000)
+    
+
+    },
+    error: function (error) {
+        $("#alert-pop-up").html(error)
+      console.log(error);
+    }
+  });
+  
+
+
+
+})
+</script>
+
+
+
+
+  

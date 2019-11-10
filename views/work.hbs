@@ -1,0 +1,159 @@
+<style>
+.note
+{
+  text-align: center;
+  height: 80px;
+  background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+  color: #fff;
+  font-weight: bold;
+  line-height: 80px;
+}
+.form-content
+{
+  padding: 2%;
+  margin-bottom: 2%;
+}
+.form-control{
+  border-radius:0.5rem;
+}
+.btnSubmit
+{
+  border:none;
+  border-radius:1.5rem;
+  padding: 1%;
+  width: 20%;
+  cursor: pointer;
+  background: #0062cc;
+  color: #fff;
+}
+.btn-btn-background{
+    -moz-user-select:none;
+    background-image: -webkit-linear-gradient(145deg ,#faa61f 0% , #faa61f 0% , #ed1847 100%);
+    border:1px solid #bfa67a;
+    border-radius: 0.5rem;
+    color:#ffffff;
+    cursor:pointer;
+    display: inline-block;
+    font-size:12px;
+    line-height: 1.42857;
+    margin-bottom:0;
+    padding:12px 0px;
+    text-align:center;
+    text-transform:uppercase;
+    transition:all 0.5s ease 0s;
+    vertical-align: middle;
+    padding:15px;
+    
+  
+  }
+  .btn-btn-background:hover{
+    text-decoration: none;
+    color:#272627;
+    background:white;
+  }
+.custom-bg{
+  background:#2c3e50;
+  border-radius:0.5rem;
+}
+
+</style>
+
+<nav class="navbar noshadow navbar-expand-lg navbar-light  ">
+  <a class="navbar-brand mr-0" href="#" >
+    
+      <img src="svg/logo.svg" height="60" alt="logo" class=" mr-0  ">
+  </a>
+<a class="navbar-brand mt-2 " href="#">
+    <object data="svg/name.svg" type="image/svg+xml" height="50" alt="logo" class=" l2  d-sm-none d-lg-inline-block d-none ml-5 d-md-inline-block"></object>
+    <object data="svg/name.svg" type="image/svg+xml" height="20" alt="logo" class=" d-inline-block d-lg-none d-md-none "></object>
+  </a>
+  <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto  ">
+      <li class="nav-item  ml-2 mr-2 ">
+        <a class="nav-link scheme-text " href="http://localhost:{{port}}/">Home <span class="sr-only">(current)</span></a>
+      </li>    
+      <li class="nav-item ml-2 mr-2">
+          
+        <a class="nav-link scheme-text active " href="http://localhost:{{port}}/login" >Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container custom-bg  jumbotron text-center col-8 mt-4 register-form">
+  <h3 class="text-white text-center ">Sign Up To Get Your Work Done</h3>
+  <form id="work">
+  <div class="form">
+      <div class="form-content">
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <input type="text" class="form-control" id="name" placeholder="Your Name *" value=""required/>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <input type="text" class="form-control" id="username" placeholder="User Name" value=""required/>
+                  </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <input type="email" class="form-control" id="email" placeholder="Email" value=""required/>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <input type="password" class="form-control" id="password" placeholder="Your Password *" value=""required/>
+                  </div>
+              </div><div class="col-md-6">
+                  <div class="form-group">
+                      <input type="password" class="form-control"id="confirmpassword" placeholder="Confirm Password *" value=""required/>
+                  </div>
+              </div>
+          </div>
+          <input type="submit" class="btn-btn-background" value="Register">
+          <p class="text-white mt-2"> or Have Account Already then <a  class="p-2 btn-btn-background  text-white" role ="button" href="http://localhost:{{port}}/login">login</a>
+      
+          </p> 
+      </div>
+  </div>
+  </form>
+</div>
+</div>
+
+<script>
+$( document ).ready(function() {
+  $("#work").submit(function(){
+      event.preventDefault();
+      const name = $("#name").val();
+      const username = $("#username").val();
+      const email = $("#email").val();
+      const password = $("#password").val();
+      const role = "seller";
+      const confirmpassword = $("#confirmpassword").val();
+      const body =JSON.stringify({name,username,email,password,confirmpassword,role})
+      $.ajax({
+                type: 'post',
+                url: 'http://localhost:3000/api/users/register',   
+                data: body,
+                xhrFields: {
+                    withCredentials: false
+                },  
+                headers: {
+                  "content-type": "application/json"
+                }, 
+                success: function (data) {
+                  window.location.href = `http://localhost:{{port}}/dashboard?userName=${body.username}?role=${body.username}`;
+                },  
+                error: function (response) {
+                  alert(response.responseJSON.msg);
+                }
+              })
+      
+      })  
+  })
+
+</script>
