@@ -19,7 +19,7 @@ router.post("/add_service", (req, res) => {
     provider: req.body.provider
   });
 
-  newUser.save(err => {
+  newService.save(err => {
     if (err) {
       if (err.errors) {
         if (err.errors.name) {

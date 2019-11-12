@@ -11,7 +11,7 @@ const multer = require('multer');
 router.post("/post", (req, res) => {
   console.log(req.body);
 
-  let newFeedback = new Service({
+  let newFeedback = new Feedback({
     name: req.body.name,
     email: req.body.email,
     phone: req.body.phone,
@@ -51,20 +51,23 @@ router.post("/post", (req, res) => {
         res.status(400).json({ success: false, msg: "Failed to post feedback." });
       }
     } else {
-      res.json({ success: true, msg: "Service Added Successfully successfully registered." });
+      res.json({ success: true, msg: "Your response has been recorded." });
     }
   });
 });
 
 router.get("/get", (req, res) => {
 
-  Feedback.find({}, (err, service) => {
+  Feedback.find({}, (err, feedback) => {
     if (err) throw err;
 
-    if (!service) {
-      return res.status(400).json({ success: false, msg: "Service not found." });
+    if (!feedback) {
+      return res.status(400).json({ success: false, msg: "Feedback not found." });
     }
-    return res.json(service);
+    res.render('all_feedback' , {
+      data: feedback
+    });
+    //return res.json(feedback);
   });
 });
 

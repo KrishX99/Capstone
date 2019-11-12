@@ -33,27 +33,6 @@ const emailValidator = [
   })
 ];
 
-const usernameValidator = [
-  validate({
-    validator: "isLength",
-    arguments: [3, 15],
-    message: "Username must be between {ARGS[0]} and {ARGS[1]} characters."
-  }),
-  validate({
-    validator: "matches",
-    arguments: /^[A-Za-z][-_A-Za-z0-9]+$/,
-    message:
-      "Username must start with a letter and must not have special characters except - and _."
-  })
-];
-
-const passwordValidator = [
-  validate({
-    validator: "isLength",
-    arguments: [6, 20],
-    message: "Password must be between {ARGS[0]} and {ARGS[1]} characters."
-  })
-];
 const contactLength = [
   validate({
     validator: "isLength",
@@ -75,8 +54,8 @@ const FeedbackSchema = new mongoose.Schema({
 
   },
   phone: {
-    type: Number,
-    required: [true, "Area is required."],
+    type: String,
+    required: [true, "Phone number is required."],
     unique: true,
     validate: contactLength
   },
