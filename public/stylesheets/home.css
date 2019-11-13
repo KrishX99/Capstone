@@ -1,9 +1,11 @@
 body{
     overflow-x:hidden !important;
+    font-family: 'Open Sans', sans-serif;
+
+  /*background: #f7f7f7; */
+  background: url(../images/light.jpg);
+  background-size:cover;
   }
-body{
-  overflow:hidden;  
-}
 .body-2{
   display: none; 
 }

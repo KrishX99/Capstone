@@ -54,4 +54,18 @@ router.get('/feedback', (req,res,next)=>{
     port:process.env.PORT||3000
   });
 });
+router.get('/provide_service', (req,res,next)=>{
+  res.render('provide_service' , {
+    title: 'Select the service you want to provide',
+    port:process.env.PORT||3000
+  });
+});
+
+router.get('/details', (req,res,next)=>{
+  res.render('details' , {
+    title: 'Some info about you',
+    port:process.env.PORT||3000
+  });
+});
+
 module.exports = router;
