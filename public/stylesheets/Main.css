@@ -1,0 +1,200 @@
+
+.logo-image{
+   width: 30px;
+   height: 30px;
+
+
+}
+
+.section1_image1{
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+}
+.menu{
+  margin-right: 20px;
+}
+.pull-left{
+  position: absolute;
+   right: 30px;
+   left: auto;
+    bottom: 100px;
+   margin-top: 8px;
+   width: 250px;
+   height: 300px;
+   box-shadow: 2px 2px 5px ;
+
+}
+
+.dropdown-toggle{
+  margin-top: 5px;
+  color: rgb(180,180,180,0.5);
+}
+
+.dropdown-toggle:hover {
+    color: rgb(220,220,220);
+    opacity: 0.85;
+    height: 30px;
+}
+.square {
+  position: absolute;
+  height : 10px;
+  width:10px;
+  right:18px;
+  transform: rotate(45deg);
+  background-color: white;
+  top: -5px;
+}
+.svg{
+  width: 80px;
+  height: 80px;
+}
+.brand{
+  margin-left: 4.2%;
+  width:200px;
+}
+.btn-group
+{
+  margin-left: 27.68%;
+  margin-right:2%;
+  width:70px;
+
+}
+.st{
+    color:#fea116;
+    margin-left: 50px;
+}
+.space{
+  margin-left: 50px;
+}
+.Alt
+{
+  margin-right:6%;
+  width: 500px;
+}
+#navbarNavAltMarkup
+{
+  float: left;
+}
+.notifications{
+  position: relative;
+  left:336px;
+}
+@media only screen and (max-width: 990px){
+ .Alt{
+    width:150px;
+    margin: 0 0 0 0;
+    margin-top: 200px;
+
+  }
+  .brand{
+    margin: 0 0 0 0;
+  }
+
+}
+.squarei {
+  position: absolute;
+  height :10px;
+  width:10px;
+  right:2px;
+  transform: rotate(45deg);
+  background-color: white;
+  top: 27.6px;
+  visibility: hidden;
+  z-index: 1000;
+}
+.move{
+  position: absolute;
+   right: 0px;
+   left: -370px;
+    bottom: 100px;
+   margin-top: 8px;
+   box-shadow: 2px 2px 5px ;
+   width: 400px;
+   height: 450px;
+   z-index: 111;
+}
+.account {
+  position:relative;
+  margin-top: 10px;
+  left:9px;
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+}
+.account a:hover
+{
+  text-decoration: none;
+  font-size: 17px;
+}
+.user .fa-user{
+  margin-right: 6px;
+}
+.user{
+  position:relative;
+  top: 5px;
+  margin-top: 0;
+  height: 50px;
+  font-size: 18px;
+  left:9px;
+}
+.user hr{
+  position: relative;
+  bottom: 7px;
+  right: 9px;
+}
+.user a:hover{
+  text-decoration: none;
+  font-size:19px;
+}
+.scroll{
+    overflow-y: scroll;
+
+}
+
+
+/* footer*/
+.line{
+  position: relative;
+  bottom: -10px;
+  border-color: black;
+}
+footer{
+  background-color: #dbdbdb;
+height: 200px;
+width: 1353px;
+box-shadow: 0px -3px black;
+
+}
+.reach,.reach1{
+  display: inline-block;
+}
+.reach{
+  height:130px;
+  width:380px;
+  position:relative;
+  top:10px;
+  left:30px;
+}
+.reach h5{
+  margin-bottom: 15px;
+  margin-left: 15px;
+}
+.reach1{
+  width:400px;
+  position:relative;
+  top:-38px;
+  right:-513px;
+}
+.soc{
+  margin-left: 10px;
+}
+.contact{
+  float:right;
+  width:350px
+}
+.copyright{
+  position: relative;
+  right:-500px;
+  bottom: -30px;
+  width:600px;
+}

@@ -183,21 +183,22 @@ $( document ).ready(function() {
 </div>
 </div>
 
+
 <script>
 
-function profilerender(userData) {
+  function profilerender(userData) {
 
 
-const { userDetails } = userData;
-let icon = "https://image.flaticon.com/icons/png/512/21/21104.png";
-// template for profile page
-if (!userDetails.profileImg) {
+  const { userDetails } = userData;
+  let icon = "https://image.flaticon.com/icons/png/512/21/21104.png";
+  // template for profile page
+  if (!userDetails.profileImg) {
   icon = userDetails.profileImg
-}
-userDetails.profileImg = icon;
-$("#profile-icon").attr('src', icon)
+  }
+  userDetails.profileImg = icon;
+  $("#profile-icon").attr('src', icon)
 
-var templateProfile = `<div class=" py-3">
+  var templateProfile = `<div class=" py-3">
                       <div class="container ">
                       <div class="row ">
                       <div class="col-md-4 offset-md-2">
@@ -213,16 +214,16 @@ var templateProfile = `<div class=" py-3">
                       </div>
                       </div>
                       </div>`
-$("#root").html(templateProfile)
-return 
+  $("#root").html(templateProfile)
+  return 
 
-}
-
-
-function profile(){
+  }
 
 
-$.ajax({
+  function profile(){
+
+
+  $.ajax({
   url: "http://localhost:3000/api/users/profile",
   type: 'GET',
   // Fetch the stored userToken from localStorage and set in the header
@@ -235,19 +236,19 @@ $.ajax({
     alert("something went wrong")
   }
 
-});
+  });
 
                   
 
 
 
-}
-function updateProfile(){
-const userData = JSON.parse(window.localStorage.getItem('profileData'))
-const { userDetails }= userData
-const templateupdateProfile =`<div class="container" id="updateprofilearea">
-<div id="alert-box">
-</div>
+  }
+  function updateProfile(){
+  const userData = JSON.parse(window.localStorage.getItem('profileData'))
+  const { userDetails }= userData
+  const templateupdateProfile =`<div class="container" id="updateprofilearea">
+  <div id="alert-box">
+  </div>
   <div class="row my-2">
       
       <!-- edit form column -->
@@ -311,19 +312,19 @@ const templateupdateProfile =`<div class="container" id="updateprofilearea">
       </div>
       
   </div>
-</div>
-<hr />`
-$("#root").html(templateupdateProfile)
-return 
-}
-function service(){
-$("#root").html("")
+  </div>
+  <hr />`
+  $("#root").html(templateupdateProfile)
+  return 
+  }
+  function service(){
+  $("#root").html("")
   $("#root").append("<h3> Service List</h3>")
-  
 
 
 
-$.ajax({
+
+  $.ajax({
   url: "http://localhost:3000/api/services",
   type: 'GET',
   // Fetch the stored userToken from localStorage and set in the header
@@ -355,36 +356,36 @@ $.ajax({
     alert("something went wrong")
   }
 
-});
+  });
 
 
-}
-function serviceAdopted(id){
+  }
+  function serviceAdopted(id){
 
-}
-function logout(){
-window.localStorage.clear()
-window.location.href = "http://localhost:{{port}}/login";
-}
-
-
+  }
+  function logout(){
+  window.localStorage.clear()
+  window.location.href = "http://localhost:{{port}}/login";
+  }
 
 
-$(document).ready(function(){
-if(!window.localStorage.user && !window.localStorage.token){
+
+
+  $(document).ready(function(){
+  if(!window.localStorage.user && !window.localStorage.token){
   alert("please login")
   window.location.href = `http://localhost:{{port}}/login`;
-}
-else {
+  }
+  else {
 
   profile()
 
-}
+  }
 
 
 
-})
-$(document).on('click', '#updateForm', function () {
+  })
+  $(document).on('click', '#updateForm', function () {
 
   const name = $('#name').val();
   const contact = $("#contact").val()
@@ -393,7 +394,7 @@ $(document).on('click', '#updateForm', function () {
   const state = $('#state').val()
   const pincode = $('#pincode').val()
   let address = [street, city, state, pincode].join(" ")
-  
+
   //Do validation here
   const file = $('#file')[0].files[0]
   const userData = JSON.parse(window.localStorage.getItem('profileData'))
@@ -445,11 +446,11 @@ $(document).on('click', '#updateForm', function () {
       console.log(error);
     }
   });
-  
 
 
 
-})
+
+  })
 </script>
 
 

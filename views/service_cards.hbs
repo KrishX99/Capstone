@@ -1,0 +1,150 @@
+<script src="https://kit.fontawesome.com/b773794512.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/stylesheets/Main.css" />
+<link rel="stylesheet" href="/stylesheets/services_user.css" />
+<link rel="stylesheet" href="/stylesheets/home.css">
+
+<!-- Nav  Bar Start-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="brand">
+    <a href="#" class="navbar-left">
+      <object type="image/svg+xml" data="/svg/logo.svg"   class="logo-image"></object>
+    </a>
+    <a class="navbar-brand " href="http://localhost:{{port}}/">MakaanTipTop</a>
+  </div>
+  <div class="Alt">
+    <div class="collapse navbar-collapse menu" id="navbarNavAltMarkup">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item space">
+            <a class="nav-item nav-link active"  href="http://localhost:{{port}}/dashboard">Home <span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item space">
+            <a class="nav-item nav-link  " href="http://localhost:{{port}}/adopt_services">Services</a>
+        </li>
+
+        <li class="nav-item space">
+            <a class="nav-item nav-link " href="http://localhost:{{port}}//current_services">Status</a>
+        </li>
+
+        <li class="nav-item st">
+            <a class="nav-item nav-link " href="#" style="color:#fea116"><i class="fas fa-store" style="margin-right:5px"></i>Store</a>
+        </li>
+      </ul>
+    </div>
+</div>
+<div class="notifications">
+<div class="collapse navbar-collapse">
+          <ul class="navbar-nav">
+          <li class="nav-item ">
+              <a href="#" class="dropdown"  data-toggle="dropdown" style="color:#fea116" >
+              <span title="Store"><i class="fas fa-bell"></i></span></a>
+              <div class="squarei"></div>
+              <ul class="dropdown-menu move scroll">
+                <li><a href="#">Account Details</a></li>
+                <li><a href="#">Update Detalis</a></li>
+                <li><a href="#">Sign Out</a></li>
+              </ul>
+
+          </li>
+        </ul>
+</div>
+</div>
+
+
+<div class="btn-group">
+<div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+        <li class="nav-item ">
+            <a href="#" class="dropdown dropdown-toggle"  data-toggle="dropdown">
+            <span title="Badal Joshi"><img src="/images/face.png" class="img-fluid section1_image1"  alt="#"></span><span class="caret"></span></a>
+            <ul class="dropdown-menu pull-left">
+            <div class="square"></div>
+              <li>
+                <div class="user">
+
+                  <a href="#" style="color:black"><i class="fas fa-user"></i><strong>Badal Joshi</strong></a>
+                <hr />
+                </div>
+              </li>
+              <li class="account" ><a href="#" style="color: #010414" >Order History</a></li>
+              <li class="account"><a href="#" style="color: #010414" >Service History</a></li>
+              <li class= "account"><a href="#" style="color: #010414">WishList</a></li>
+              <li class= "account"><a href="#" style="color: #010414">Help</a></li>
+              <li class= "account"><a href="#" style="color:#e6514c" onclick="logout()">Sign Out</a></li>
+            </ul>
+        </li>
+      </ul>
+</div>
+</div>
+</nav>
+<!-- Nav Bar End-->
+
+<!-- Cards -->
+<div class="card-deck mb-3 text-center dekk">
+  <div class="row">
+    {{#each workers as |worker|}}
+      <div class="col-lg-4 col-md-6 box mlt">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title" name = 'worker_role'>{{workers.role}}</h5>
+            <p class="card-text" name = "worker_name"><strong>Name:</strong>{{worker.name}}</p>
+            <p class="card-text" name = "worker_email"><strong>Email:</strong>{{worker.email}}</p>
+            <p class="card-text" name = "worker_phone"><strong>Contact:</strong>{{worker.phone}}</p>
+            <p class="card-text" name = "worker_location"><strong>Location:</strong>{{worker.location}}</p>
+            <p class="card-text" name = "worker_price"><strong>Price:</strong>{{worker.price}}</p>
+            <a href = "http://localhost:3000/adopt_services/hire" class="btn btn-success">HIRE</a>
+          </div>
+        </div>
+      </div>
+      {{else}}
+        <p>No services are available at the moment</p>
+      {{/each}}
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    if(!window.localStorage.user && !window.localStorage.token){
+      alert("please login");
+      window.location.href = `http://localhost:{{port}}/login`;
+    }
+    else{
+      $("#hire").submit(function(){
+        event.preventDefault();
+        const username = window.localStorage.getItem('user');
+        const worker_name = $("#worker_name").val();
+        const worker_email = $("#worker_email").val();
+        const worker_phone = $("#worker_phone").val();
+        const worker_location = $("#worker_location").val();
+        const worker_role = $("#worker_role").val();
+        const worker_price = $("#worker_price").val();
+        const body =JSON.stringify({username,worker_name,worker_email,worker_phone,worker_location,worker_role,worker_price})
+        $.ajax({
+          type: 'post',
+          url: 'http://localhost:3000/adopt_services/hire',   
+          data: body,
+          xhrFields: {
+              withCredentials: false
+          },  
+          headers: {
+            "content-type": "application/json"
+          }, 
+          success: function (data) {
+            window.location.href = `http://localhost:{{port}}/dashboard`;
+          },  
+          error: function (response) {
+              alert(response.responseJSON.msg);
+          }
+        })
+      })
+    }
+  })
+
+  function logout(){
+  window.localStorage.clear()
+  window.location.href = "http://localhost:{{port}}/login";
+  }
+  
+</script>

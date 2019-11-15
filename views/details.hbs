@@ -32,12 +32,15 @@
         </div>
 
         <div class="col-12 form-input">
-          <form method="POST" action = "http://localhost:{{port}}/">
+          <form method="POST" action = "http://localhost:{{port}}/api/add_worker">
             <div class="form-group fa fa-user">
               <input type="text" class="form-control" placeholder="Enter Name" name = "name">
             </div>
             <div class="form-group fa fa-info">
               <input type="email" class="form-control" placeholder="Enter Email" name = 'email'>
+            </div>
+            <div class="form-group fa fa-mobile-phone">
+              <input type="text" class="form-control" placeholder="Enter your phone no" name = 'phone'>
             </div>
             <div class="form-group fa fa-user-circle">
               <input type="text" class="form-control" placeholder="Enter your role" name = 'role'>

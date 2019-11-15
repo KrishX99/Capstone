@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="/stylesheets/home.css">
+<link rel="stylesheet" href="/stylesheets/service.css">
+<style>
+  .btn-btn-background{
+    -moz-user-select:none;
+    background-image: -webkit-linear-gradient(145deg ,#faa61f 0% , #faa61f 0% , #ed1847 100%);
+    border:1px solid #bfa67a;
+    border-radius: 0.5rem;
+    color:#ffffff;
+    cursor:pointer;
+    display: inline-block;
+    font-size:15px;
+    line-height: 1.42857;
+    margin-bottom:0;
+    padding:12px 0px;
+    text-align:center;
+    text-transform:uppercase;
+    transition:all 0.5s ease 0s;
+    vertical-align: middle;
+    padding:15px;
+    
+  
+  }
+  .btn-btn-background:hover{
+    text-decoration: none;
+    color:#272627;
+    background:white;
+  }
+.custom-bg{
+  background:#2c3e50;
+  border-radius:0.5rem;
+}
+</style>
+<nav class="navbar noshadow navbar-expand-lg">
+  <a class="navbar-brand mr-0" href="http://localhost:{{port}}/" >
+      
+    <img src="svg/logo.svg" height="60" alt="logo" class=" mr-0  ">
+  </a>
+  <a class="navbar-brand mt-2" href="http://localhost:{{port}}/">
+    <object data="svg/name.svg" type="image/svg+xml" height="50" alt="logo" class=" l2  d-sm-none d-lg-inline-block d-none ml-5 d-md-inline-block"></object>
+    <object data="svg/name.svg" type="image/svg+xml" height="20" alt="logo" class=" d-inline-block d-lg-none d-md-none "></object>
+  </a>
+  <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto  ">
+      <li class="nav-item  ml-2 mr-2 ">
+        <a class="nav-link scheme-text " href="http://localhost:{{port}}/">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="services-section">
+  <div class="inner-width">
+    <h1 class="section-title">Display</h1>
+    <div class="border"></div>
+    <div class="services-container">
+      <div class="service-box">
+        <a href="http://localhost:{{port}}/api/feedback/get_providers" class = "btn-btn-background">Service Providers</a>
+      </div>
+
+      <div class="service-box">
+        <a href="http://localhost:{{port}}/api/feedback/get_users" class = "btn-btn-background">Customers</a>
+      </div>
+
+      <div class="service-box">
+        <a href="http://localhost:{{port}}/api/feedback/get" class = "btn-btn-background">Feedbacks</a>        
+      </div>
+    </div>
+  </div>
+</div>
+</div>

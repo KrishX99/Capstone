@@ -27,7 +27,7 @@ router.get('/login', function(req, res, next) {
   });
 });
 router.get('/dashboard' , (req,res,next)=>{
-  res.render('dashboard', {
+  res.render('new_dashboard', {
     title: 'Dashboard',
     port : process.env.PORT||3000
   });
@@ -64,6 +64,20 @@ router.get('/provide_service', (req,res,next)=>{
 router.get('/details', (req,res,next)=>{
   res.render('details' , {
     title: 'Some info about you',
+    port:process.env.PORT||3000
+  });
+});
+
+router.get('/admin', (req,res,next)=>{
+  res.render('admin' , {
+    title: 'Admin Panel',
+    port:process.env.PORT||3000
+  });
+});
+
+router.get('/adopt_services', (req,res,next)=>{
+  res.render('adopt_services' , {
+    title: 'Pick a Service',
     port:process.env.PORT||3000
   });
 });

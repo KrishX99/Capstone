@@ -5,6 +5,7 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const config = require("../config/secret");
 const Feedback = require("../models/feedback");
+const Users = require("../models/user")
 const { Storage } = require('@google-cloud/storage');
 const multer = require('multer');
 
@@ -66,6 +67,20 @@ router.get("/get", (req, res) => {
     }
     res.render('all_feedback' , {
       data: feedback
+    });
+    //return res.json(feedback);
+  });
+});
+router.get("/get_users", (req, res) => {
+
+  Users.find({}, (err, users) => {
+    if (err) throw err;
+
+    if (!users) {
+      return res.status(400).json({ success: false, msg: "Users not found." });
+    }
+    res.render('all_users' , {
+      data: users
     });
     //return res.json(feedback);
   });

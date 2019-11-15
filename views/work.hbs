@@ -147,7 +147,7 @@ $( document ).ready(function() {
                   "content-type": "application/json"
                 }, 
                 success: function (data) {
-                  window.location.href = `http://localhost:{{port}}/dashboard?userName=${body.username}?role=${body.username}`;
+                  window.location.href = `http://localhost:{{port}}/provide_service`;
                 },  
                 error: function (response) {
                   alert(response.responseJSON.msg);
