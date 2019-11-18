@@ -55,7 +55,7 @@ const contactLength = [
 ];
 
 const AdServiceSchema = new mongoose.Schema({
-  user_name:String,
+  user:String,
   worker_name:String,
   worker_role:String,
   worker_email:String,

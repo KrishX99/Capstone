@@ -134,7 +134,10 @@
           success: function (data) {
             window.localStorage.setItem('user',JSON.stringify(data.user));
             window.localStorage.setItem('userToken',data.token)
-            window.location.href = `http://localhost:{{port}}/dashboard?userName=${data.user.username}/role=${data.user.role}`;
+            if(data.user.role == 'seller')
+              window.location.href = `http://localhost:{{port}}/provide_service`
+            else
+              window.location.href = `http://localhost:{{port}}/dashboard?userName=${data.user.username}/role=${data.user.role}`;
           },  
           error: function (response) {
               alert(response.responseJSON.msg);

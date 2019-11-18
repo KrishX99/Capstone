@@ -1,7 +1,28 @@
-<script src="https://kit.fontawesome.com/b773794512.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/stylesheets/Main.css" />
 <link rel="stylesheet" href="/stylesheets/services_user.css" />
 <link rel="stylesheet" href="/stylesheets/home.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/b773794512.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<style>
+  input{
+    padding: 0.4rem;
+    background: rgba(255,255,255,0.2);
+    border:none;
+  }
+  form{
+    align-content: center;
+    text-align: center;
+    padding: 1rem;
+    margin: 5rem;
+  }
+  hr{
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+}
+</style>
 
 <!-- Nav  Bar Start-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -82,48 +103,100 @@
 <!-- Nav Bar End-->
 
 <!-- Cards -->
-<div class="card-deck mb-3 text-center dekk">
-  <div class="row">
-    {{#each workers as |worker|}}
-      <div class="col-lg-4 col-md-6 box mlt">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title" name = 'worker_role'>{{workers.role}}</h5>
-            <p class="card-text" name = "worker_name"><strong>Name:</strong>{{worker.name}}</p>
-            <p class="card-text" name = "worker_email"><strong>Email:</strong>{{worker.email}}</p>
-            <p class="card-text" name = "worker_phone"><strong>Contact:</strong>{{worker.phone}}</p>
-            <p class="card-text" name = "worker_location"><strong>Location:</strong>{{worker.location}}</p>
-            <p class="card-text" name = "worker_price"><strong>Price:</strong>{{worker.price}}</p>
-            <a href = "http://localhost:3000/adopt_services/hire" class="btn btn-success">HIRE</a>
-          </div>
-        </div>
-      </div>
-      {{else}}
-        <p>No services are available at the moment</p>
-      {{/each}}
-  </div>
+
+
+<div class = "container">
+  <h3>{{heading}}'s available</h3>
 </div>
 
+<div class="container">
+
+{{#each workers as |worker|}}
+  <form id = "HIRE" class = 'form-horizontal'>
+    <div class="form-group">
+      <label for="role" class = "control-label col-sm-2">Role</label>
+      <div class = 'col-sm-3'>
+          <input type = "text" class = "form-control " id = 'worker_role' value = {{worker.role}} disabled>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="name" class = "control-label col-sm-2">Name</label>
+      <div class = 'col-sm-3'>
+          <input type = "text" class = "form-control " id = 'worker_name' value = {{worker.name}} disabled>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="email" class = "control-label col-sm-2">Email</label>
+      <div class = 'col-sm-3'>
+          <input type = "text" class = "form-control " id = 'worker_email' value = {{worker.email}} disabled>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="phone" class = "control-label col-sm-2">Phone</label>
+      <div class = 'col-sm-3'>
+          <input type = "text" class = "form-control " id = 'worker_phone' value = {{worker.phone}} disabled>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="location" class = "control-label col-sm-2">Location</label>
+      <div class = 'col-sm-3'>
+          <input type = "text" class = "form-control " id = 'worker_location' value = {{worker.location}} disabled>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="price" class = "control-label col-sm-2">Price</label>
+      <div class = 'col-sm-3'>
+          <input type = "text" class = "form-control " id = 'worker_price' value = {{worker.price}} disabled>
+        </div>
+    </div>
+  
+    <div class="form-group ">
+        <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="pk_test_gM209Tda0yl0TV3KtCTGZLZu002hb3apW9"
+      data-amount={{worker_price}};
+      data-name="Service Selection Portal"
+      data-description="You are just one step away from accessing the service"
+      data-image="/images/marketplace.png"
+      data-locale="auto">
+    </script>
+    </div>
+   <hr>
+          {{!-- <script>
+            // Hide default stripe button
+            document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+          </script> --}}
+        <!--   <input type = "submit" class="btn btn-success" value = "HIRE">
+-->
+        </form>
+      </div>
+    </div>
+  </div>
+  {{else}}
+    <p class = 'm-5'>No services are available at the moment</p>
+  {{/each}}
+
+</div>
 <script>
   $(document).ready(function(){
     if(!window.localStorage.user && !window.localStorage.token){
       alert("please login");
-      window.location.href = `http://localhost:{{port}}/login`;
+      window.location.href = `http://localhost:3000/login`;
     }
     else{
-      $("#hire").submit(function(){
+      $("#HIRE").submit(function(){
         event.preventDefault();
-        const username = window.localStorage.getItem('user');
+        const user = window.localStorage.getItem('user');
         const worker_name = $("#worker_name").val();
         const worker_email = $("#worker_email").val();
         const worker_phone = $("#worker_phone").val();
         const worker_location = $("#worker_location").val();
         const worker_role = $("#worker_role").val();
         const worker_price = $("#worker_price").val();
-        const body =JSON.stringify({username,worker_name,worker_email,worker_phone,worker_location,worker_role,worker_price})
+        const body =JSON.stringify({user,worker_name,worker_email,worker_phone,worker_location,worker_role,worker_price})
         $.ajax({
           type: 'post',
-          url: 'http://localhost:3000/adopt_services/hire',   
+          url: 'http://localhost:3000/adopt_services/charge',   
           data: body,
           xhrFields: {
               withCredentials: false
@@ -132,7 +205,9 @@
             "content-type": "application/json"
           }, 
           success: function (data) {
-            window.location.href = `http://localhost:{{port}}/dashboard`;
+            window.location.href = `http://localhost:3000/dashboard`;
+            alert("Thank You for using the service");
+
           },  
           error: function (response) {
               alert(response.responseJSON.msg);
