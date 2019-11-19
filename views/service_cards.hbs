@@ -2,8 +2,8 @@
 <link rel="stylesheet" href="/stylesheets/services_user.css" />
 <link rel="stylesheet" href="/stylesheets/home.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://kit.fontawesome.com/b773794512.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://kit.fontawesome.com/b773794512.js" crossorigin="anonymous"></script>
 
 <style>
   input{
@@ -45,33 +45,13 @@
             <a class="nav-item nav-link  " href="http://localhost:{{port}}/adopt_services">Services</a>
         </li>
 
-        <li class="nav-item space">
-            <a class="nav-item nav-link " href="http://localhost:{{port}}//current_services">Status</a>
-        </li>
-
         <li class="nav-item st">
             <a class="nav-item nav-link " href="#" style="color:#fea116"><i class="fas fa-store" style="margin-right:5px"></i>Store</a>
         </li>
       </ul>
     </div>
 </div>
-<div class="notifications">
-<div class="collapse navbar-collapse">
-          <ul class="navbar-nav">
-          <li class="nav-item ">
-              <a href="#" class="dropdown"  data-toggle="dropdown" style="color:#fea116" >
-              <span title="Store"><i class="fas fa-bell"></i></span></a>
-              <div class="squarei"></div>
-              <ul class="dropdown-menu move scroll">
-                <li><a href="#">Account Details</a></li>
-                <li><a href="#">Update Detalis</a></li>
-                <li><a href="#">Sign Out</a></li>
-              </ul>
 
-          </li>
-        </ul>
-</div>
-</div>
 
 
 <div class="btn-group">
@@ -85,14 +65,12 @@
               <li>
                 <div class="user">
 
-                  <a href="#" style="color:black"><i class="fas fa-user"></i><strong>Badal Joshi</strong></a>
+                  <a href="#" style="color:black"><i class="fas fa-user"></i><strong id = 'username' name='username'  ></strong></a>
                 <hr />
                 </div>
               </li>
-              <li class="account" ><a href="#" style="color: #010414" >Order History</a></li>
-              <li class="account"><a href="#" style="color: #010414" >Service History</a></li>
-              <li class= "account"><a href="#" style="color: #010414">WishList</a></li>
-              <li class= "account"><a href="#" style="color: #010414">Help</a></li>
+              <li class="account" ><a href="#" style="color: #010414" >Profile</a></li>
+              <li class="account"><a href="#" style="color: #010414" >Update Profile</a></li>
               <li class= "account"><a href="#" style="color:#e6514c" onclick="logout()">Sign Out</a></li>
             </ul>
         </li>
@@ -110,9 +88,8 @@
 </div>
 
 <div class="container">
-
 {{#each workers as |worker|}}
-  <form id = "HIRE" class = 'form-horizontal'>
+  <form class = 'form-horizontal' id = "HIRE">
     <div class="form-group">
       <label for="role" class = "control-label col-sm-2">Role</label>
       <div class = 'col-sm-3'>
@@ -149,33 +126,28 @@
           <input type = "text" class = "form-control " id = 'worker_price' value = {{worker.price}} disabled>
         </div>
     </div>
-  
-    <div class="form-group ">
-        <script
-      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-      data-key="pk_test_gM209Tda0yl0TV3KtCTGZLZu002hb3apW9"
-      data-amount={{worker_price}};
-      data-name="Service Selection Portal"
-      data-description="You are just one step away from accessing the service"
-      data-image="/images/marketplace.png"
-      data-locale="auto">
+    <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="pk_test_gM209Tda0yl0TV3KtCTGZLZu002hb3apW9"
+          data-amount={{worker.price}}
+          data-name="Service Payment Page"
+          data-description="Please pay to proceed"
+          data-image="/images/cash.png"
+          data-locale="auto">
     </script>
+    <script>
+      // Hide default stripe button
+      document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+    </script>
+    <div class="form-group ">
+      <input type="submit" class = 'btn btn-lg btn-success' value = 'Hire'>
     </div>
-   <hr>
-          {{!-- <script>
-            // Hide default stripe button
-            document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
-          </script> --}}
-        <!--   <input type = "submit" class="btn btn-success" value = "HIRE">
--->
-        </form>
-      </div>
-    </div>
-  </div>
+  </form>
+    
+  <hr>
   {{else}}
     <p class = 'm-5'>No services are available at the moment</p>
   {{/each}}
-
 </div>
 <script>
   $(document).ready(function(){
@@ -184,9 +156,16 @@
       window.location.href = `http://localhost:3000/login`;
     }
     else{
+    
+      let user = window.localStorage.getItem('user');
+      user = JSON.parse(user);
+      user = user.username;
+      document.getElementById('username').textContent = user;
       $("#HIRE").submit(function(){
         event.preventDefault();
-        const user = window.localStorage.getItem('user');
+        let user = window.localStorage.getItem('user');
+        user = JSON.parse(user);
+        user = user.username;
         const worker_name = $("#worker_name").val();
         const worker_email = $("#worker_email").val();
         const worker_phone = $("#worker_phone").val();
@@ -216,6 +195,8 @@
       })
     }
   })
+
+  
 
   function logout(){
   window.localStorage.clear()

@@ -11,6 +11,22 @@ const multer = require('multer');
 const stripe = require("stripe")("sk_test_5sahhik3jiQFnexE1z1ieaEX00fvU67oyy");
 
 
+router.get('/current_services' , (req,res)=>{
+  let username = 'krishx99';
+  AdService.find({user:username} , (err,user)=>{
+    if (err) throw err;
+    if (!user) {
+      return res.status(400).json({ success: false, msg: "User not found." });
+    }
+    res.render('current_services' , {
+      title:'Active Services',
+      port: process.env.PORT || 3000,
+      workers:user
+    })
+    //res.json({msg:user});
+  })
+});
+
 router.post('/hire' , (req,res)=>{
   let newService = new AdService({
     user: req.body.user,
@@ -39,22 +55,7 @@ router.post('/charge', (req, res) => {
     description: 'Service Adoption',
     currency: 'inr',
     customer: customer.id
-  }))
-  .then(charge => {
-
-    // let newService = new AdService({
-    //   user: req.body.user,
-    //   worker_name: req.body.worker_name,
-    //   worker_role: req.body.worker_role,
-    //   worker_email: req.body.worker_email,
-    //   worker_phone: req.body.worker_phone,
-    //   worker_location: req.body.worker_location,
-    //   worker_price: req.body.worker_price
-    // });
-    // newService.save();
-
-    res.redirect('/dashboard')
-});
+  }));
 });
 
 router.get("/delivery",function(req,res){
