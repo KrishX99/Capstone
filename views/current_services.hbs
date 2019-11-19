@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="/stylesheets/Main.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="/stylesheets/home.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<style>
+
+h2 {
+  color: rgb(15, 15, 15);
+  padding: 2rem 0;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border: none;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  }
+  a {
+    color: initial;
+    &:hover {
+      text-decoration: initial;
+    }
+  }
+  .text-muted i {
+    margin: 0 10px;
+  }
+}
+.card img{
+  height: 300px;
+  width: 100%;
+}
+hr{
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+}
+</style>
+
+<section id="section1">
+<!-- Nav  Bar Start-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+       <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="brand">
+      <a href="#" class="navbar-left">
+        <object type="image/svg+xml" data="/svg/logo.svg"   class="logo-image"></object>
+      </a>
+      <a class="navbar-brand " href="http://localhost:{{port}}/">MakaanTipTop</a>
+    </div>
+    <div class="Alt">
+
+
+    <div class="collapse navbar-collapse menu" id="navbarNavAltMarkup">
+       <ul class="navbar-nav ml-auto">
+          <li class="nav-item space">
+             <a class="nav-item nav-link active"  href="http://localhost:{{port}}/dashboard">Home <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item space">
+             <a class="nav-item nav-link  " href="http://localhost:{{port}}/adopt_services">Services</a>
+          </li>
+          <li class="nav-item st">
+             <a class="nav-item nav-link " href="#" style="color:#fea116"><i class="fas fa-store" style="margin-right:5px"></i>Store</a>
+          </li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="btn-group">
+      <div class="collapse navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item ">
+                  <a href="#" class="dropdown dropdown-toggle"  data-toggle="dropdown">
+                  <span title="Badal Joshi"><img src="/images/face.png" class="img-fluid section1_image1"  alt="#"></span><span class="caret"></span></a>
+                  <ul class="dropdown-menu pull-left">
+                  <div class="square"></div>
+                    <li>
+                      <div class="user">
+
+                        <a href="#" style="color:black"><i class="fas fa-user"></i><strong name = "username"id = "username"></strong></a>
+                        <hr />
+                      </div>
+                    </li>
+                    <li class="account" ><a href="#" style="color: #010414" >Profile</a></li>
+                    <li class="account"><a href="#" style="color: #010414" >Update Details</a></li>
+                    <li class= "account"><a href="#" style="color:#e6514c" onclick="logout()">Sign Out</a></li>
+                  </ul>
+                </li>
+              </ul>
+      </div>
+      </div>
+   </nav>
+<!-- Nav Bar End-->
+</section>
+
+<div class="text-center">
+    <h2>Currently Active Services</h2>
+</div>
+
+<hr>
+<div class="container row">
+{{#each workers as |worker|}}
+  <form class = 'form-horizontal col-md-6 mt-5'>
+    <div class="form-group">
+      <label for="role" class = "control-label col-sm-2">Role</label>
+      <div class = 'col-sm-6'>
+          <input type = "text" class = "form-control " id = 'worker_role' value = {{worker.worker_role}} disabled>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="name" class = "control-label col-sm-2">Name</label>
+      <div class = 'col-sm-6'>
+          <input type = "text" class = "form-control " id = 'worker_name' value = {{worker.worker_name}} disabled>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="email" class = "control-label col-sm-2">Email</label>
+      <div class = 'col-sm-6'>
+          <input type = "text" class = "form-control " id = 'worker_email' value = {{worker.worker_email}} disabled>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="phone" class = "control-label col-sm-2">Phone</label>
+      <div class = 'col-sm-6'>
+          <input type = "text" class = "form-control " id = 'worker_phone' value = {{worker.worker_phone}} disabled>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="location" class = "control-label col-sm-2">Location</label>
+      <div class = 'col-sm-6'>
+          <input type = "text" class = "form-control " id = 'worker_location' value = {{worker.worker_location}} disabled>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="price" class = "control-label col-sm-2">Price</label>
+      <div class = 'col-sm-6'>
+          <input type = "text" class = "form-control " id = 'worker_price' value = {{worker.worker_price}} disabled>
+        </div>
+    </div>
+    <hr>
+  </form>
+  {{else}}
+    <p class = 'm-5'>No services are available at the moment</p>
+  {{/each}}
+</div>
